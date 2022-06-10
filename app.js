@@ -22,8 +22,10 @@ class Calculator {
   delete() {
     if (this.currentOperand !== "") {
       this.currentOperand = this.currentOperand.toString().slice(0, -1);
-    } else {
-      this.previousOperand = this.previousOperand.toString().slice(0, -1);
+    } else if (this.previousOperand !== "") {
+      this.currentOperand = this.previousOperand;
+      this.previousOperand = "";
+      this.currentOperand = this.currentOperand.toString().slice(0, -1);
     }
   }
   // Methods klik angka
