@@ -4,6 +4,7 @@ const operationBtns = document.querySelectorAll("[data-operation]");
 const clearBtn = document.querySelector("[data-clear]");
 const deleteBtn = document.querySelector("[data-delete]");
 const equalsBtn = document.querySelector("[data-equals]");
+const percentBtn = document.querySelector("[data-percent]");
 const operandTextElement = document.querySelector("[data-operand]");
 
 // Class
@@ -42,6 +43,13 @@ class Calculator {
     this.operation = operation;
     this.previousOperand = this.currentOperand + this.operation;
     this.currentOperand = "";
+  }
+  // Methods Percent
+  percent() {
+    let percent;
+    const current = parseFloat(this.currentOperand);
+    percent = current / 100;
+    this.currentOperand = percent;
   }
   // Methods eksekusi operasi
   compute() {
@@ -101,6 +109,11 @@ operationBtns.forEach((button) => {
 
 equalsBtn.addEventListener("click", () => {
   calculator.compute();
+  calculator.updateDisplay();
+});
+
+percentBtn.addEventListener("click", () => {
+  calculator.percent();
   calculator.updateDisplay();
 });
 
